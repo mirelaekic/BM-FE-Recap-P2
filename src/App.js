@@ -10,7 +10,7 @@ function App() {
     <div>
       <Router>
         <Route path="/" exact component={Start}/>
-        <Route path="/play" exact component={Play} />
+        <Route path="/play" render={(props) => <Play {...props} />}/>
         <Route path="/start" exact component={Questions} />
       </Router>
     </div>

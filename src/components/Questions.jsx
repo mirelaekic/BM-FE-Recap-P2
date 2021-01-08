@@ -3,6 +3,30 @@ import { Container, Button, Row, Col} from "react-bootstrap";
 import "./Start.css"
 
 export default class Questions extends Component {
+    state = {
+        questions: [],
+        TotalDuration: null,
+    }
+    getNewExam = async (e) => {
+        e.preventDefault();
+        this.setState({ loading: true });
+        try {
+          let response = await fetch("http://localhost:3010/exam/${id}/answer", {
+            method: "POST",
+            body: JSON.stringify(this.state.questions),
+            headers: new Headers({
+              "Content-Type": "application/json",
+            }),
+          });
+          if (response.ok) {
+            return response;
+          } else {
+            console.log("eror");
+            };
+        } catch (err) {
+            console.log(err);
+        }
+      };
     render() {
         return (
             <div>
